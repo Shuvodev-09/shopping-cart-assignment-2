@@ -1,10 +1,10 @@
 body{
-	background: #ccb7b7;
+	background: #faf8f8;
 }
 .shop{
     text-align: center;
     padding-top: 5px;
-    color: rgb(228, 29, 218);
+   text-transform: capitalize;
 }
 .cart{
 	margin: 100px 0;
@@ -26,7 +26,7 @@ body{
     justify-content: flex-start;
 }
 .cart-item img{
-	width: 160px;
+	width: 165px;
 }
 .cart-item h5{
     padding: 0 45px;
@@ -36,10 +36,10 @@ body{
 }
 
 .btn-default2{
-	background-color: #1cc73e;
+	background-color: #1fdd45;
 }
 .btn-default1{
-	background-color: #e43c3c;
+	background-color: #dc3535;
 }
 .cart-item .form-control{
 	background-color: #e2dbbf;
@@ -60,6 +60,6 @@ body{
     float: right;
     padding: 10px 30px;
 	font-size: 19px;
-	background-color: #d443ca;
+	background-color: #d84197;
 	border: none;
 }

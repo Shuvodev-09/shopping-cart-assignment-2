@@ -51,7 +51,7 @@ document.getElementById('sunglass-plus').addEventListener('click', () => {
     let sunglassTotal = document.getElementById('sunglass-total');
     let currentSunglassTotal = parseInt(sunglassTotal.innerHTML);
 
-    let newSunglassTotal = currentSunglassTotal + 199;
+    let newSunglassTotal = currentSunglassTotal + 69;
     sunglassTotal.innerHTML = newSunglassTotal;
 
     calculateTotal();
@@ -71,7 +71,7 @@ document.getElementById('sunglass-minus').addEventListener('click', () => {
         let sunglassTotal = document.getElementById('sunglass-total');
         let currentSunglassTotal = parseInt(sunglassTotal.innerHTML);
 
-        let newSunglassTotal = currentSunglassTotal - 199;
+        let newSunglassTotal = currentSunglassTotal - 69;
         sunglassTotal.innerHTML = newSunglassTotal;
 
         calculateTotal();
@@ -84,7 +84,7 @@ function calculateTotal() {
     let sunglassTotal = parseInt(document.getElementById('sunglass-total').innerHTML);
 
     let subtotal = braceletTotal + sunglassTotal;
-    let tax = subtotal * 0.1;
+    let tax =  subtotal * 0.1;
     let total = subtotal + tax;
 
     //  all totals are zero when quantity is zero
