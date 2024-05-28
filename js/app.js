@@ -1,3 +1,4 @@
+
 // Bracelet item start plus section
 document.getElementById('bracelet-plus').addEventListener('click', () => {
     let braceletNumberInput = document.getElementById('bracelet-number');
@@ -6,14 +7,7 @@ document.getElementById('bracelet-plus').addEventListener('click', () => {
     let newQuantity = braceletQuantity + 1;
     braceletNumberInput.value = newQuantity;
 
-    // Current total price
-    let braceletTotal = document.getElementById('bracelet-total');
-    let currentBraceletTotal = parseInt(braceletTotal.innerHTML);
-
-    let newBraceletTotal = currentBraceletTotal + 499;
-    braceletTotal.innerHTML = newBraceletTotal;
-
-    calculateTotal();
+    updateTotals('bracelet-number', 'bracelet-total', 499);
 });
 
 // Bracelet decrease
@@ -26,14 +20,7 @@ document.getElementById('bracelet-minus').addEventListener('click', () => {
         let newQuantity = braceletQuantity - 1;
         braceletNumberInput.value = newQuantity;
 
-        // Get the current total price
-        let braceletTotal = document.getElementById('bracelet-total');
-        let currentBraceletTotal = parseInt(braceletTotal.innerHTML);
-
-        let newBraceletTotal = currentBraceletTotal - 499;
-        braceletTotal.innerHTML = newBraceletTotal;
-
-        calculateTotal();
+        updateTotals('bracelet-number', 'bracelet-total', 499);
     }
 });
 
@@ -47,14 +34,7 @@ document.getElementById('sunglass-plus').addEventListener('click', () => {
     let newQuantity = sunglassQuantity + 1;
     sunglassNumberInput.value = newQuantity;
 
-    // Current total price
-    let sunglassTotal = document.getElementById('sunglass-total');
-    let currentSunglassTotal = parseInt(sunglassTotal.innerHTML);
-
-    let newSunglassTotal = currentSunglassTotal + 69;
-    sunglassTotal.innerHTML = newSunglassTotal;
-
-    calculateTotal();
+    updateTotals('sunglass-number', 'sunglass-total', 69);
 });
 
 // Sunglass decrease
@@ -67,32 +47,49 @@ document.getElementById('sunglass-minus').addEventListener('click', () => {
         let newQuantity = sunglassQuantity - 1;
         sunglassNumberInput.value = newQuantity;
 
-        // Current total price
-        let sunglassTotal = document.getElementById('sunglass-total');
-        let currentSunglassTotal = parseInt(sunglassTotal.innerHTML);
-
-        let newSunglassTotal = currentSunglassTotal - 69;
-        sunglassTotal.innerHTML = newSunglassTotal;
-
-        calculateTotal();
+        updateTotals('sunglass-number', 'sunglass-total', 69);
     }
 });
 
+// Event listeners for manual input
+document.getElementById('bracelet-number').addEventListener('input', () => {
+    updateTotals('bracelet-number', 'bracelet-total', 499);
+});
+
+document.getElementById('sunglass-number').addEventListener('input', () => {
+    updateTotals('sunglass-number', 'sunglass-total', 69);
+});
+
+
+// manualy it can be work
+
+function updateTotals(inputId, totalId, itemPrice) {
+    let numberInput = document.getElementById(inputId);
+    let quantity = parseInt(numberInput.value);
+
+    // Ensure quantity is not negative
+    if (isNaN(quantity) || quantity < 0) {
+        quantity = 0;
+        numberInput.value = 0;
+    }
+
+    // Calculate new total
+    let total = document.getElementById(totalId);
+    let newTotal = quantity * itemPrice;
+    total.innerHTML = newTotal;
+
+    calculateTotal();
+}
+
+
 // Function to calculate subtotal and total including tax
 function calculateTotal() {
-    let braceletTotal = parseInt(document.getElementById('bracelet-total').innerHTML);
-    let sunglassTotal = parseInt(document.getElementById('sunglass-total').innerHTML);
+    let braceletTotal = parseInt(document.getElementById('bracelet-total').innerHTML) || 0;
+    let sunglassTotal = parseInt(document.getElementById('sunglass-total').innerHTML) || 0;
 
     let subtotal = braceletTotal + sunglassTotal;
     let tax =  subtotal * 0.1;
     let total = subtotal + tax;
-
-    //  all totals are zero when quantity is zero
-    if (braceletTotal === 0 && sunglassTotal === 0) {
-        subtotal = 0;
-        tax = 0;
-        total = 0;
-    }
 
     document.getElementById('sub-total').innerHTML = subtotal.toFixed(2);
     document.getElementById('tax-ammount').innerHTML = tax.toFixed(2);
@@ -101,10 +98,3 @@ function calculateTotal() {
 
 // Initial calculation
 calculateTotal();
-
-
-
-
-
-
-
